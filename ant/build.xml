@@ -5,6 +5,7 @@
 		<fileset dir="lib" includes="**/*.jar" />
 	</path>
 	<property file="ant/build.properties" />
+	<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" /> 
 	<tstamp>
 		<format property="touch.time" pattern="yyyy-MM-dd hh:mm" />
 	</tstamp>

@@ -25,3 +25,4 @@ doc/*.txt
 # ignore all .txt files in the doc/ directory
 /bin/
 /build/
+/lib/
