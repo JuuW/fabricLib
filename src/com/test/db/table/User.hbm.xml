@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.test.db.table">
+	<class name="User" table="USER">
+		<id column="ID_" name="id">
+			<generator class="native" />
+		</id>
+		<!-- versioned entity -->
+		<version column="OBJ_VERSION_" generated="never" name="version"
+			type="integer" />
+		<!-- properties map -->
+		<property column="USERNAME_" generated="never" lazy="false"
+			length="20" name="username" not-null="true" type="string" />
+		<property column="PASSWORD_" generated="never" lazy="false"
+			length="30" name="password" type="string" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="toolsrc" default="build" basedir="..">
+
+	<path id="classpath">
+		<fileset dir="../ygnbi_2.0_dependence/lib" includes="**/*.jar" />
+		<fileset dir="./core_lib" includes="**/*.jar" />
+	</path>
+
+	<path id="classpathForVerify">
+		<fileset dir="../ygnbi_2.0_dependence/lib" includes="**/*.jar" />
+		<pathelement path="bin" />
+	</path>
+
+	<target name="get.core.lib">
+		<ant antfile="../../ygnbi.test/ygnbi_2.0_test/ant/build.xml">
+			<property file="../../ygnbi.test/ygnbi_2.0_test/ant/build.properties" />
+			<property name="param1" value="version 1.x" />
+		</ant>
+	</target>
+
+	<tstamp>
+		<format property="touch.time" pattern="yyyy-MM-dd hh:mm" />
+	</tstamp>
+
+	<tstamp>
+		<format property="vertion.time" pattern="yyyyMMddhhmm" />
+	</tstamp>
+
+	<target name="build">
+		<delete dir="build" />
+		<mkdir dir="build/temp" />
+		<mkdir dir="build/deploy" />
+		<copydir dest="build" src="src" excludes="**/*.java" />
+		<delete file="build/MaindataType.prop" />
+		<!--javadoc  access="private" author="true" destdir="build/doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" sourcefiles="" source="1.5" sourcepath="src" splitindex="true" use="true" version="true" classpathref="classpath" /-->
+		<javac srcdir="src" destdir="build" target="1.5" debug="on" classpathref="classpath" />
+		<zip destfile="build/src-snapshot.zip">
+			<fileset dir="." includes="src/**/*" />
+			<fileset dir="." includes="test/**/*" />
+		</zip>
+		<jar destfile="build/temp/commonAccountMapping.jar" basedir="build">
+			<manifest>
+				<attribute name="Author" value="dongming.xia" />
+				<attribute name="Build-Time" value="${touch.time}" />
+			</manifest>
+		</jar>
+		<jar file="build/temp/ygnbi.common.accountTrans.aar">
+			<metainf file="./webservice/services.xml" />
+		</jar>
+		<copy todir="build/temp">
+			<fileset dir="doc" />
+		</copy>
+		<copy todir="build/temp" file="build/changeLogs.txt" />
+		<zip destfile="build/deploy/ygnbi2.0_account.mapping.v${vertion.time}.zip" basedir="build/temp" />
+	</target>
+
+
+</project>

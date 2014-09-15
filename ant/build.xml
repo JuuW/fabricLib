@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="fabricLib" default="build" basedir="../">
+
+	<path id="classpath">
+		<fileset dir="lib" includes="**/*.jar" />
+	</path>
+	<property file="ant/build.properties" />
+	<tstamp>
+		<format property="touch.time" pattern="yyyy-MM-dd hh:mm" />
+	</tstamp>
+
+	<target name="build">
+		<delete dir="build" />
+		<mkdir dir="build/jar" />
+		<mkdir dir="build/class" />
+		<mkdir dir="build/deploy" />
+		<copydir dest="build/class" src="src" excludes="**/*.java" />
+		<javac srcdir="src" destdir="build/class" target="1.7" debug="on" classpathref="classpath" />
+		<jar destfile="build/jar/${app_name}.jar" basedir="build/class">
+			<manifest>
+				<attribute name="Author" value="Jason" />
+				<attribute name="Build-Time" value="${touch.time}" />
+			</manifest>
+		</jar>
+
+		<copy todir="build/temp">
+			<fileset dir="doc" />
+			<fileset dir="WebContent" />
+		</copy>
+		
+		<copy todir="build/temp/WEB-INF/lib"  flatten="true">
+			<file file="build/jar/${app_name}.jar"/>
+			<fileset dir="lib" includes="**/*.jar" />
+		</copy>
+
+		<zip destfile="build/deploy/${app_name}.war" basedir="build/temp" />
+		<copy todir="${tomcat_home}/webapps" file="build/deploy/${app_name}.war" />
+
+		<delete dir="${tomcat_home}/webapps/${app_name}" />
+
+		<!--<exec executable="cmd">
+			<arg value="/c" />
+			<arg value="${tomcat_home}/bin/startup.bat" />
+			<arg value="-p" />
+		</exec> -->
+	</target>
+
+
+</project>
