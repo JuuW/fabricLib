@@ -1,4 +1,4 @@
-*.class
+﻿*.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -23,6 +23,5 @@ build/
 # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 doc/*.txt
 # ignore all .txt files in the doc/ directory
-doc/**/*.txt
 /bin/
 /build/
