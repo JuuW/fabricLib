@@ -1,0 +1,47 @@
+<div>
+	<table>
+		<tr>
+			<td><label>username</label></td>
+			<td><input id="add_user_username" name="username" type="text" /></td>
+		</tr>
+		<tr>
+			<td><label>password</label></td>
+			<td><input id="add_user_password" name="password"
+				type="password" /></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td><input id="add_user_submit" name="submit" type="submit" /></td>
+		</tr>
+	</table>
+
+	<script>
+		$(document).ready(function() {
+
+			$("#add_user_submit").click(function() {
+
+				$.ajax({
+					type : "post",
+					url : "./AddUser",
+					cache : false,
+					data : {
+						username : $("#add_user_username").val(),
+						password : $("#add_user_password").val()
+					},
+					// cache:false,
+					// dataType:'json',
+					success : function(data) {
+						$("#main_footer").html(data);
+					},
+					error : function() {
+						$("#main_footer").html("error");
+					}
+				});
+
+			});
+
+		});
+	</script>
+
+</div>

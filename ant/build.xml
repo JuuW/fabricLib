@@ -5,7 +5,7 @@
 		<fileset dir="lib" includes="**/*.jar" />
 	</path>
 	<property file="ant/build.properties" />
-	<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" /> 
+	<!--<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" /> -->
 	<tstamp>
 		<format property="touch.time" pattern="yyyy-MM-dd hh:mm" />
 	</tstamp>
@@ -13,16 +13,16 @@
 	<target name="build">
 		<delete dir="build" />
 		<mkdir dir="build/jar" />
-		<mkdir dir="build/class" />
+		<mkdir dir="build/classes" />
 		<mkdir dir="build/deploy" />
-		<copydir dest="build/class" src="src" excludes="**/*.java" />
-		<!--<javac srcdir="src" destdir="build/class" target="1.7" debug="on" classpathref="classpath" />-->
-		<jar destfile="build/jar/${app_name}.jar" basedir="build/class">
+		<javac srcdir="src" destdir="build/classes" target="1.7" debug="on" classpathref="classpath" />
+		<jar destfile="build/jar/${app_name}.jar" basedir="build/classes">
 			<manifest>
 				<attribute name="Author" value="Jason" />
 				<attribute name="Build-Time" value="${touch.time}" />
 			</manifest>
 		</jar>
+		<copydir dest="build/classes" src="src" excludes="**/*.java" />
 
 		<copy todir="build/temp">
 			<fileset dir="doc" />
@@ -30,9 +30,13 @@
 		</copy>
 		
 		<copy todir="build/temp/WEB-INF/lib"  flatten="true">
-			<file file="build/jar/${app_name}.jar"/>
-			<fileset dir="lib" includes="**/*.jar" />
+			<!--<file file="build/jar/${app_name}.jar"/>-->
+			<fileset dir="lib" includes="**/*.jar" excludes="servlet*.jar"/>
 		</copy>
+		<copy todir="build/temp/WEB-INF/classes">
+			<fileset dir="build/classes"/>
+		</copy>
+		
 
 		<zip destfile="build/deploy/${app_name}.war" basedir="build/temp" />
 		<copy todir="${tomcat_home}/webapps" file="build/deploy/${app_name}.war" />

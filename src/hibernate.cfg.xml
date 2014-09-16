@@ -11,7 +11,7 @@
 
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fabriclib</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
 
@@ -38,7 +38,11 @@
 		<!-- ############################################ -->
 
 		<!-- nbi mapping files -->
-		<mapping resource="com/test/db/table/User.hbm.xml" />
-		
+
+
+		<mapping class="com.fabriclib.db.tables.user.User" />
+		<!--  <mapping resource="com/test/db/table/User.hbm.xml" />
+				<mapping package="com.fabriclib.db.tables" />-->
+
 	</session-factory>
 </hibernate-configuration>

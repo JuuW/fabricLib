@@ -2,10 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="lib/db/hibernate3.jar"/>
 	<classpathentry kind="lib" path="lib/db/jdbc.mysql.jar"/>
 	<classpathentry kind="lib" path="lib/log/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/log/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/db/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="lib/db/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="lib/db/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,20 +3,19 @@ package com.test;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-
-import com.test.db.table.User;
+import com.fabriclib.util.CustomLog;
 import com.test.db.DatabaseIO;
+import com.test.db.table.User;
 
 public class Hello extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(Logger.class);
 
 	/**
 	 * Default constructor.
@@ -29,7 +28,7 @@ public class Hello extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("进入Hello：");
+		CustomLog.info("Hello");
 	}
 
 	// /**
@@ -55,9 +54,9 @@ public class Hello extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println("行数cuowu");
 		}
-		log.info("用户:" + username);
-		log.info("密码:" + password);
-		log.info("行数:" + lines);
+		CustomLog.info("用户:" + username);
+		CustomLog.info("密码:" + password);
+		CustomLog.info("行数:" + lines);
 		PrintWriter out = response.getWriter();
 		// try {
 		// String result = FileAccessUtil.readFile(path);
