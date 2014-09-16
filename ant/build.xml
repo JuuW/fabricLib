@@ -16,7 +16,7 @@
 		<mkdir dir="build/class" />
 		<mkdir dir="build/deploy" />
 		<copydir dest="build/class" src="src" excludes="**/*.java" />
-		<javac srcdir="src" destdir="build/class" target="1.7" debug="on" classpathref="classpath" />
+		<!--<javac srcdir="src" destdir="build/class" target="1.7" debug="on" classpathref="classpath" />-->
 		<jar destfile="build/jar/${app_name}.jar" basedir="build/class">
 			<manifest>
 				<attribute name="Author" value="Jason" />
