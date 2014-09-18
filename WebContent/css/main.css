@@ -313,7 +313,7 @@ a img {
 #footer {
     padding: 0;
     margin: 20px 0;
-    color: #999;
+    
     background-color: #eee;
 }
 #footer h4 {
@@ -337,7 +337,7 @@ a img {
 #footer a:visited,
 #footer a:hover,
 #footer a:active {
-    color: #666;
+
 }
 
 .copyright {
@@ -373,4 +373,8 @@ button{
 .empty_message{
 	font-size: 20px;
 	color: red;
+}
+
+.hidden{
+	display: none;
 }
