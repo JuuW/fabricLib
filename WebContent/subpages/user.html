@@ -1,0 +1,29 @@
+<div>
+    <ul>
+        <li><a id="addUser">Add User</a>
+        </li>
+        <li><a id="SearchUser">Search User</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+$(document).ready(function() {
+
+        $("#addUser").click(function() {
+       
+                $.ajax({
+
+                    type: "get",
+                    url: "subpages/addUser.html",
+                    cache: false,
+                    success: function(data) {
+                        $("#middle").html(data);
+                    },
+                    error: function() {
+                        $("#middle").html("error");
+                    }
+                });
+            });
+        });
+</script>
