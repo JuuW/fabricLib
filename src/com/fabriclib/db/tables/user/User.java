@@ -30,10 +30,10 @@ public class User implements Serializable {
 	@Column(name = "version" )
 	private long version;
 
-	@Column(name = "username", unique = true,nullable = false)
+	@Column(name = "username", unique = true, nullable = false, length = 20)
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "password", length = 20)
 	private String password;
 
 	public long getId() {
@@ -44,13 +44,9 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-
-
 	public long getVersion() {
 		return version;
 	}
-
-
 
 	public void setVersion(long version) {
 		this.version = version;
@@ -80,11 +76,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "";
+		return "User [id=" + id + ", version=" + version + ", username="
+				+ username + ", password=" + password + "]";
 	}
+
+
+
+
 
 }

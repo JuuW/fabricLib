@@ -10,15 +10,17 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaUpdate;
 
+import com.fabriclib.util.Message;
+
 /**
  * 映射数据访问服务类
  * 
  * @author 
  * @since JDK_1.5.0
  */
-public final class DatabaseIO {
+public class DatabaseIO {
 
-    private static Properties dbprop;
+//    private static Properties dbprop;
     
     private static Configuration cfg;
 
@@ -205,7 +207,7 @@ public final class DatabaseIO {
 //                quary = sess.createQuery("from AccountMappingItem where sapAccountID = :sapAccountID").setString(
 //                        "sapAccountID", key);
 //            }
-//            AccountMappingItem mappingItem = (AccountMappingItem) quary.setMaxResults(1).uniqueResult();
+//            AccountMappingItem mappinogItem = (AccountMappingItem) quary.setMaxResults(1).uniqueResult();
 //            return mappingItem;
 //        } catch (Throwable e) {
 //            throw new RuntimeException("凭证传递科目-增加帐户映射到map错误：" + e.getMessage(), e);
@@ -214,10 +216,11 @@ public final class DatabaseIO {
 //        }
 //    }
 
-    public static boolean save(Object item) throws Exception {
+    public static Message save(Object item) throws Exception {
+    	
         List<Object> items = new ArrayList<Object>();
         items.add(item);
-        return saveList(items);
+        return saveOrUpdateList(items);
 
     }
     
@@ -228,7 +231,7 @@ public final class DatabaseIO {
      * @return
      * @throws Exception
      */
-    public static boolean saveList(List<?> items) throws Exception {
+    protected static boolean saveList(List<?> items) throws Exception {
         Session sess = null;
         try {
             sess = getDBSession();
@@ -287,7 +290,7 @@ public final class DatabaseIO {
         }
     }
 
-    public static boolean saveOrUpdateList(List<?> items) throws Exception {
+    public static Message saveOrUpdateList(List<?> items) throws Exception {
         Session sess = null;
         try {
             sess = getDBSession();
@@ -303,7 +306,7 @@ public final class DatabaseIO {
                 i++;
             }
             sess.getTransaction().commit();
-            return true;
+            return new Message("S","save to database successfuly");
         } catch (Exception e) {
             if (sess != null) {
                 sess.getTransaction().rollback();
@@ -322,7 +325,7 @@ public final class DatabaseIO {
      * 
      * @return
      */
-    private static Session getDBSession() {
+    protected static Session getDBSession() {
         return getSessionFactory().openSession();
     }
 
@@ -345,7 +348,7 @@ public final class DatabaseIO {
         se.execute(true, true);
     }
 
-    private static synchronized SessionFactory getSessionFactory() {
+    protected static synchronized SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             sessionFactory = getCfg().buildSessionFactory();
         }
@@ -369,7 +372,7 @@ public final class DatabaseIO {
 //    }
 
     public static void setDbprop(Properties dbprop) {
-        DatabaseIO.dbprop = dbprop;
+//        DatabaseIO.dbprop = dbprop;
     }
 
     /**

@@ -1,14 +1,17 @@
 package com.fabriclib.servlet;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fabriclib.db.tables.ts.Fabric;
+import com.fabriclib.db.tables.ts.FabricIO;
 import com.fabriclib.util.CustomLog;
+import com.fabriclib.util.Message;
 
 //@WebServlet(name="mytest", 
 //urlPatterns={"/myurl"}, 
@@ -20,9 +23,41 @@ public class AddFabric extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPostDoer(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+	protected void doPostDoer(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Fabric fabric =  new Fabric();
+		fabric.setHangerNo( req.getParameter("hangerNo"));
+		fabric.setInputDate( new Date());
+		fabric.setCstructnWarp( req.getParameter("cstructnWarp"));
+		fabric.setCstructnWeft( req.getParameter("cstructnWeft"));
+		fabric.setYarnWarp( req.getParameter("yarnWarp"));
+		fabric.setYarnWeft( req.getParameter("yarnWeft"));
+		fabric.setContent( req.getParameter("content"));
+		fabric.setStatus( req.getParameter("status"));
+		fabric.setWeaving( req.getParameter("weaving"));
+		fabric.setFinishing( req.getParameter("finishing"));
+		fabric.setWidth( req.getParameter("width"));
+		fabric.setWeight( req.getParameter("weight"));
+		fabric.setArticle( req.getParameter("article"));
+		fabric.setOriginalPrice( req.getParameter("originalPrice"));
+		fabric.setFinalPrice( req.getParameter("finalPrice"));
+		req.getSession().getAttribute("username");
+
+		StringBuffer html = new StringBuffer("<div>");
+
+		try {
+			Message msg = FabricIO.save(fabric);
+			html.append(msg.getMsgType() + ":  "+ msg.getMsg());
+		} catch (Exception e) {
+			html.append("hangerNo:").append(fabric.getHangerNo())
+			.append(". saving is failed!");
+			e.printStackTrace();
+		}
+
+		html.append("</div>");
+				
+		CustomLog.info(html.toString());
 		
+		print(resp,html.toString());
 	}
 
 	@Override

@@ -2,20 +2,20 @@
 	<table>
 		<tr>
 			<td><label>username</label></td>
-			<td><input id="add_user_username" name="username" type="text" /></td>
+			<td><input required="required" id="add_user_username" name="username" type="text" /></td>
 		</tr>
 		<tr>
 			<td><label>password</label></td>
-			<td><input id="add_user_password" name="password"
+			<td><input required="required" id="add_user_password" name="password"
 				type="password" /></td>
 		</tr>
 
 		<tr>
 			<td></td>
-			<td><input id="add_user_submit" name="submit" type="submit" /></td>
+			<td><button id="add_user_submit"> Add </button></td>
 		</tr>
 	</table>
-
+</div>
 	<script>
 		$(document).ready(function() {
 
@@ -32,10 +32,10 @@
 					// cache:false,
 					// dataType:'json',
 					success : function(data) {
-						$("#main_footer").html(data);
+						$("#footer").html(data);
 					},
 					error : function() {
-						$("#main_footer").html("error");
+						$("#footer").html("error");
 					}
 				});
 
@@ -43,5 +43,3 @@
 
 		});
 	</script>
-
-</div>

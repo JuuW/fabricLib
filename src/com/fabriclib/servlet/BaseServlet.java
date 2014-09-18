@@ -19,6 +19,13 @@ public abstract class BaseServlet extends HttpServlet{
 		CustomLog.info("Initial:");
 	}
 
+	
+	protected void print(HttpServletResponse resp,String info) throws IOException{
+		CustomLog.info(info);
+		PrintWriter out = resp.getWriter();
+		out.print(info.toString());
+		out.flush();
+	}
 
 	/**
 	 * 
@@ -35,9 +42,7 @@ public abstract class BaseServlet extends HttpServlet{
 			doGetDoer(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
-			PrintWriter out = resp.getWriter();
-			out.print(e.getMessage());
-			out.flush();
+			print(resp,e.getMessage());
 			throw e;
 		}
 	}
@@ -54,9 +59,7 @@ public abstract class BaseServlet extends HttpServlet{
 			doPostDoer(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
-			PrintWriter out = resp.getWriter();
-			out.print(e.getMessage());
-			out.flush();
+			print(resp,e.getMessage());
 			throw e;
 		}
 		

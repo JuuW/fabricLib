@@ -14,6 +14,10 @@ import javax.persistence.Version;
 @Table(name = "FABRIC")
 public class Fabric implements Serializable {
 
+
+	public Fabric() {
+		super();
+	}
 	/**
 	 * 
 	 */
@@ -22,12 +26,12 @@ public class Fabric implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private long id;
 
 	@Version
 	@GeneratedValue
 	@Column(name = "version")
-	private int version;
+	private long version;
 
 	/**
 	 * Hanger No.:该项为面料挂样编号，例如：RAY-JYI-F01-00100,
@@ -104,8 +108,8 @@ public class Fabric implements Serializable {
 	/**
 	 * Weight:表示面料克重。例如：100g/sqm.
 	 */
-	@Column(name = "Weight")
-	private String Weight;
+	@Column(name = "weight")
+	private String weight;
 
 	/**
 	 * Article:表示供应商的品名代码。
@@ -126,11 +130,8 @@ public class Fabric implements Serializable {
 	@Column(name = "finalPrice")
 	private String finalPrice;
 
-	public Fabric() {
-		super();
-	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -158,15 +159,15 @@ public class Fabric implements Serializable {
 		this.cstructnWeft = cstructnWeft;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getVersion() {
+	public long getVersion() {
 		return version;
 	}
 
-	public void setVersion(int version) {
+	public void setVersion(long version) {
 		this.version = version;
 	}
 
@@ -243,11 +244,11 @@ public class Fabric implements Serializable {
 	}
 
 	public String getWeight() {
-		return Weight;
+		return weight;
 	}
 
 	public void setWeight(String weight) {
-		Weight = weight;
+		this.weight = weight;
 	}
 
 	public String getArticle() {
@@ -276,7 +277,16 @@ public class Fabric implements Serializable {
 
 	@Override
 	public String toString() {
-		return "";
+		return "Fabric [id=" + id + ", version=" + version + ", hangerNo="
+				+ hangerNo + ", inputDate=" + inputDate + ", printOut="
+				+ printOut + ", cstructnWarp=" + cstructnWarp
+				+ ", cstructnWeft=" + cstructnWeft + ", yarnWarp=" + yarnWarp
+				+ ", yarnWeft=" + yarnWeft + ", content=" + content
+				+ ", status=" + status + ", weaving=" + weaving
+				+ ", finishing=" + finishing + ", width=" + width + ", weight="
+				+ weight + ", article=" + article + ", originalPrice="
+				+ originalPrice + ", finalPrice=" + finalPrice + "]";
 	}
+
 
 }

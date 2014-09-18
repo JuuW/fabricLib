@@ -26,3 +26,4 @@ doc/*.txt
 /bin/
 /build/
 /lib/
+/junit/
