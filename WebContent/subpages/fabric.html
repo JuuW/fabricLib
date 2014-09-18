@@ -16,13 +16,17 @@
 		$("#uploadFabric").click(function() {
 			getFabricPage("subpages/uploadFabric.html");
 		});
+		
+		$("#searchFabric").click(function() {
+			getFabricPage("subpages/searchFabric.html");
+		});
 	});
 
-	function getFabricPage() {
+	function getFabricPage(pageUrl) {
 		$("#middle").html("");
 		$.ajax({
 			type : "get",
-			url : "subpages/addFabric.html",
+			url : pageUrl,
 			cache : false,
 			success : function(data) {
 				$("#middle").html(data);
