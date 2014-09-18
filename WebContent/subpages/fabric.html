@@ -1,28 +1,35 @@
 <div>
-    <ul>
-        <li><a id="addFabric">Add Fabric</a>
-        </li>
-        <li><a id="searchFabric">Search Fabric</a>
-        </li>
-    </ul>
+	<ul>
+		<li><a id="addFabric">Add Fabric</a></li>
+		<li><a id="uploadFabric">Upload Fabric</a></li>
+		<li><a id="searchFabric">Search Fabric</a></li>
+	</ul>
 </div>
 
 <script>
-$(document).ready(function() {
+	$(document).ready(function() {
 
-        $("#addFabric").click(function() {
-                $("#middle").html("");
-                $.ajax({
-                    type: "get",
-                    url: "subpages/addFabric.html",
-                    cache: false,
-                    success: function(data) {
-                        $("#middle").html(data);
-                    },
-                    error: function() {
-                        $("#middle").html("error");
-                    }
-                });
-            });
-        });
+		$("#addFabric").click(function() {
+			getFabricPage("subpages/addFabric.html");
+		});
+		
+		$("#uploadFabric").click(function() {
+			getFabricPage("subpages/uploadFabric.html");
+		});
+	});
+
+	function getFabricPage() {
+		$("#middle").html("");
+		$.ajax({
+			type : "get",
+			url : "subpages/addFabric.html",
+			cache : false,
+			success : function(data) {
+				$("#middle").html(data);
+			},
+			error : function() {
+				$("#middle").html("error");
+			}
+		});
+	}
 </script>

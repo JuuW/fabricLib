@@ -1,0 +1,84 @@
+<div>
+    
+
+<input type="file"/>
+    <div id="fabric_table_msg"></div>
+    <div>
+        <button id="add_fabric">Add</button>
+    </div>
+
+</div>
+<script>
+$(document).ready(function() {
+
+    $(".required").after("<span class='empty_message'>*</span>");
+
+    $("#add_fabric").click(function() {
+
+        if (!isEmpty()) {
+            requestAddFabric()
+        } else {
+            $("#fabric_table_msg").html("<div><span class='empty_message'>Please check input data</span></div>");
+        }
+    });
+
+});
+
+function isEmpty(items) {
+    var result = false;
+
+    $(".required").each(function(i, n) {
+        if ($(n).val() == "") {
+            // $(n).after("<span class='empty_message'>can't be empty!</span>");
+            // $(n).css({
+            //     "background-color": "red"
+            // });
+            result = true;
+        };
+    });
+
+    return result;
+
+}
+
+function addRequireStar(items) {
+
+    for (var item in items) {
+        $(item).after("*");
+    }
+}
+
+
+function requestAddFabric() {
+    $("#footer").html("");
+    $.ajax({
+        type: "post",
+        url: "./AddFabric",
+        cache: false,
+        data: {
+            hangerNo: $("#hangerNo").val(),
+            cstructnWarp: $("#cstructnWarp").val(),
+            cstructnWeft: $("#cstructnWeft").val(),
+            yarnWarp: $("#yarnWarp").val(),
+            yarnWeft: $("#yarnWeft").val(),
+            content: $("#content").val(),
+            status: $("#status").val(),
+            weaving: $("#weaving").val(),
+            finishing: $("#finishing").val(),
+            width: $("#width").val(),
+            weight: $("#weight").val(),
+            article: $("#article").val(),
+            originalPrice: $("#originalPrice").val(),
+            finalPrice: $("#finalPrice").val()
+        },
+        // cache:false,
+        // dataType:'json',
+        success: function(data) {
+            $("#footer").html(data);
+        },
+        error: function() {
+            $("#footer").html("error");
+        }
+    });
+}
+</script>
