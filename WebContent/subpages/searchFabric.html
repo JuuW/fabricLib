@@ -123,17 +123,17 @@ $(document).ready(function() {
     $(".required").after("<span class='empty_message'>*</span>");
 
     $("#search_fabric").click(function() {
-
+    	requestSearchFabric()
     });
 
 });
 
 
-function requestAddFabric() {
+function requestSearchFabric() {
     $("#footer").html("");
     $.ajax({
         type: "post",
-        url: "./AddFabric",
+        url: "./SearchFabric",
         cache: false,
         data: {
             hangerNo: $("#hangerNo").val(),
