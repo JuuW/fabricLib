@@ -2,21 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/db/hibernate3.jar"/>
-	<classpathentry kind="lib" path="lib/db/jdbc.mysql.jar"/>
-	<classpathentry kind="lib" path="lib/log/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/log/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="lib/db/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="lib/db/hibernate-commons-annotations.jar"/>
-	<classpathentry kind="lib" path="lib/db/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="lib/junit-4.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="lib/db/asm.jar"/>
-	<classpathentry kind="lib" path="lib/db/cglib-2.1.3.jar"/>
-	<classpathentry kind="lib" path="lib/db/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="lib/db/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/db/jta.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/fabric"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

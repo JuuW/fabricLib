@@ -110,7 +110,7 @@ public class Hello extends HttpServlet {
 			e.printStackTrace();
 			out.print(e.getMessage());
 			out.flush();
-			throw e;
+//			throw e;
 		}
 
 	}

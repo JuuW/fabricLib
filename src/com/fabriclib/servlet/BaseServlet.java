@@ -43,7 +43,7 @@ public abstract class BaseServlet extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 			print(resp,e.getMessage());
-			throw e;
+//			throw e;
 		}
 	}
 	
@@ -60,7 +60,7 @@ public abstract class BaseServlet extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 			print(resp,e.getMessage());
-			throw e;
+//			throw e;
 		}
 		
 		

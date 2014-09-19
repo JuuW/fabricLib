@@ -15,7 +15,7 @@
 		<mkdir dir="build/jar" />
 		<mkdir dir="build/classes" />
 		<mkdir dir="build/deploy" />
-		<javac srcdir="src" destdir="build/classes" target="1.7" debug="on" encoding="UTF-8" classpathref="classpath" />
+		<javac srcdir="src" destdir="build/classes" target="1.6" debug="on" encoding="UTF-8" classpathref="classpath" />
 		<jar destfile="build/jar/${app_name}.jar" basedir="build/classes" >
 			<manifest>
 				<attribute name="Author" value="Jason" />
