@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 @Entity
 @Table(name = "USERS")
 public class User implements Serializable {
@@ -28,9 +31,11 @@ public class User implements Serializable {
 	@Version
 	@GeneratedValue
 	@Column(name = "version" )
+	@JsonIgnore
 	private long version;
 
 	@Column(name = "username", unique = true, nullable = false, length = 20)
+	@JsonProperty("name")
 	private String username;
 
 	@Column(name = "password", length = 20)

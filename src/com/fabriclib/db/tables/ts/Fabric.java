@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "FABRIC")
 public class Fabric implements Serializable {
@@ -31,13 +33,14 @@ public class Fabric implements Serializable {
 	@Version
 	@GeneratedValue
 	@Column(name = "version")
+	@JsonIgnore
 	private long version;
 
 	/**
 	 * Hanger No.:该项为面料挂样编号，例如：RAY-JYI-F01-00100,
 	 * RAY位置代表面料品种Rayon，JYI代表供应商缩写，F01代表图书馆货架位，00100代表在货架的具体位置。
 	 */
-	@Column(name = "hanger_no", nullable = true, columnDefinition = "hanger_no")
+	@Column(name = "hanger_no", nullable = true, columnDefinition = "hanger_no",length = 40)
 	private String hangerNo;
 
 	/**
@@ -127,7 +130,7 @@ public class Fabric implements Serializable {
 	 * Final Price:报给客人的价钱。（这个选项要设置权限。）
 	 */
 
-	@Column(name = "finalPrice")
+	@Column(name = "finalPrice" ,length = 12)
 	private String finalPrice;
 
 
