@@ -31,7 +31,7 @@
     <target name="compile.java" depends="clear">
         <mkdir dir="${target.java.dir}" />
         <javac srcdir="${src.java.dir}" destdir="${target.java.dir}" 
-            debug="on" source="1.7" includeantruntime="on" classpathref="app.classpath"/>
+            debug="on" source="1.6" includeantruntime="on" classpathref="app.classpath"/>
     	<copydir dest="${target.java.dir}" src="${src.java.dir}" excludes="**/*.java" />
     </target>
 
