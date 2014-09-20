@@ -1,0 +1,15 @@
+.menu {
+	/* width: 300px; */
+}
+
+.main.container {
+	margin-top: 70px;
+}
+
+.required::after {
+    content: "*";
+    right:0px;
+    top:10px;
+    border:0px solid;
+    position:absolute;
+}
