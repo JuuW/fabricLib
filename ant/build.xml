@@ -25,7 +25,6 @@
 		<copydir dest="build/classes" src="src" excludes="**/*.java" />
 
 		<copy todir="build/temp">
-			<fileset dir="doc" />
 			<fileset dir="WebContent" />
 		</copy>
 		
@@ -37,7 +36,6 @@
 			<fileset dir="build/classes"/>
 		</copy>
 		
-
 		<zip destfile="build/deploy/${app_name}.war" basedir="build/temp" />
 		<copy todir="${tomcat_home}/webapps" file="build/deploy/${app_name}.war" />
 
