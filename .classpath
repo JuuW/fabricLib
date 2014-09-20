@@ -18,9 +18,8 @@
 	<classpathentry kind="lib" path="lib/db/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/jta.jar"/>
-	<classpathentry kind="lib" path="lib/jackson/jackson-core-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="lib/jackson/jackson-jaxrs-1.9.2.jar"/>
-	<classpathentry kind="lib" path="lib/jackson/jackson-mapper-asl-1.9.13.jar"/>
-	<classpathentry kind="lib" path="lib/jackson/jackson-xc-1.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/jackson/2/jackson-annotations-2.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson/2/jackson-core-2.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson/2/jackson-databind-2.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

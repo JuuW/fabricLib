@@ -10,17 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-
 import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
 import com.fabriclib.util.CustomLog;
 import com.fabriclib.util.Jackson;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 //@WebServlet(name="mytest", 
 //urlPatterns={"/myurl"}, 
@@ -41,21 +35,20 @@ public class SearchFabric extends BaseServlet {
 		// TODO Auto-generated method stub
 		Fabric fabric = new Fabric();
 		fabric.setHangerNo(req.getParameter("hangerNo"));
-		fabric.setHangerNo( req.getParameter("hangerNo"));
-		fabric.setInputDate( new Date());
-		fabric.setCstructnWarp( req.getParameter("cstructnWarp"));
-		fabric.setCstructnWeft( req.getParameter("cstructnWeft"));
-		fabric.setYarnWarp( req.getParameter("yarnWarp"));
-		fabric.setYarnWeft( req.getParameter("yarnWeft"));
-		fabric.setContent( req.getParameter("content"));
-		fabric.setStatus( req.getParameter("status"));
-		fabric.setWeaving( req.getParameter("weaving"));
-		fabric.setFinishing( req.getParameter("finishing"));
-		fabric.setWidth( req.getParameter("width"));
-		fabric.setWeight( req.getParameter("weight"));
-		fabric.setArticle( req.getParameter("article"));
-		fabric.setOriginalPrice( req.getParameter("originalPrice"));
-		fabric.setFinalPrice( req.getParameter("finalPrice"));
+//		fabric.setInputDate( req.getParameter("hangerNo"));
+//		fabric.setCstructnWarp( req.getParameter("cstructnWarp"));
+//		fabric.setCstructnWeft( req.getParameter("cstructnWeft"));
+//		fabric.setYarnWarp( req.getParameter("yarnWarp"));
+//		fabric.setYarnWeft( req.getParameter("yarnWeft"));
+//		fabric.setContent( req.getParameter("content"));
+//		fabric.setStatus( req.getParameter("status"));
+//		fabric.setWeaving( req.getParameter("weaving"));
+//		fabric.setFinishing( req.getParameter("finishing"));
+//		fabric.setWidth( req.getParameter("width"));
+//		fabric.setWeight( req.getParameter("weight"));
+//		fabric.setArticle( req.getParameter("article"));
+//		fabric.setOriginalPrice( req.getParameter("originalPrice"));
+//		fabric.setFinalPrice( req.getParameter("finalPrice"));
 		
 		List<Fabric> items = FabricIO.getByExample(fabric);
 
@@ -74,7 +67,7 @@ public class SearchFabric extends BaseServlet {
 		html.append(Jackson.getJson(items));
 //		html.append("</div>");
 		CustomLog.info(html.toString());
-
+	
 		print(resp, html.toString());
 	}
 

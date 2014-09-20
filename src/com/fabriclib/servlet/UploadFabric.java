@@ -10,13 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ObjectWriter;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-
 import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
 import com.fabriclib.util.CustomLog;

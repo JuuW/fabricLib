@@ -8,11 +8,15 @@ $(document).ready(function() {
     $("#nav-fabric").click(function() {
     	getNavPage("subpages/fabric.html");
     });
+    
+    var data  = [{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"}];
+    $("#test_json_2_table").html(ConvertJsonToTable(data,"table_id2","display","Download"));
+    $('#table_id2').DataTable();
 });
 
 
 $(document).ready( function () {
-    $('#table_id').DataTable();
+//    $('#table_id').DataTable();
 } );
 
 function getNavPage(pageUrl) {

@@ -154,7 +154,8 @@ function requestSearchFabric() {
         // cache:false,
         // dataType:'json',
         success: function(data) {
-            $("#footer").html(data);
+            $("#footer").html(ConvertJsonToTable(eval(data),"table_id","display"));
+            $('#table_id').DataTable();
         },
         error: function() {
             $("#footer").html("error");
