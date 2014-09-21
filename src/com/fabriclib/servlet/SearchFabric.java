@@ -14,6 +14,7 @@ import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
 import com.fabriclib.util.CustomLog;
 import com.fabriclib.util.Jackson;
+import com.fabriclib.util.Tool;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 //@WebServlet(name="mytest", 
@@ -34,7 +35,14 @@ public class SearchFabric extends BaseServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Fabric fabric = new Fabric();
-		fabric.setHangerNo(req.getParameter("hangerNo"));
+		String hangerNo = req.getParameter("hangerNo");
+		if(!Tool.isEmpty(hangerNo)){
+			fabric.setHangerNo(hangerNo);
+		}
+		String inputDate = req.getParameter("inputDate");
+		if(!Tool.isEmpty(inputDate)){
+			fabric.setInputDate(Tool.dateToString(inputDate));
+		}
 //		fabric.setInputDate( req.getParameter("hangerNo"));
 //		fabric.setCstructnWarp( req.getParameter("cstructnWarp"));
 //		fabric.setCstructnWeft( req.getParameter("cstructnWeft"));

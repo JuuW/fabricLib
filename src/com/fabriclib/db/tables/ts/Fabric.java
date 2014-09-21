@@ -11,9 +11,11 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "FABRIC")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Fabric implements Serializable {
 
 

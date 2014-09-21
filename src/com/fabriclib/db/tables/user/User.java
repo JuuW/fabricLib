@@ -11,9 +11,11 @@ import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "USERS")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class User implements Serializable {
 
 	
