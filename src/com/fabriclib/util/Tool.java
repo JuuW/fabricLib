@@ -25,8 +25,10 @@ public class Tool {
 		boolean result = true;
 
 		if (str != null) {
+			str.trim();
 			if (!str.equals("")) {
 				if (!str.isEmpty()) {
+					
 					result = false;
 				}
 			}

@@ -46,10 +46,12 @@ public class AddFabric extends BaseServlet {
 
 		try {
 			Message msg = FabricIO.save(fabric);
-			html.append(msg.getMsgType() + ":  "+ msg.getMsg());
+			html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
 		} catch (Exception e) {
-			html.append("hangerNo:").append(fabric.getHangerNo())
-			.append(". saving is failed!");
+			Message msg =  new Message("E","hangerNo:"+fabric.getHangerNo()
+					+". saving is failed!"+e.getMessage());
+			
+			html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
 			e.printStackTrace();
 		}
 

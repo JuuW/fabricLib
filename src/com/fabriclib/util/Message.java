@@ -29,14 +29,14 @@ public class Message {
 	public String getMsgHtml() {
 		String color = "";
 		if(getMsgType().equals("S")){
-			color = "class = 'SucMsg'";
+			color = "style='background-color:rgba(0,255,0,.5)'";
 		}else if(getMsgType().equals("E")){
-			color = "class = 'errMsg'";
+			color = "style='background-color:rgba(255,0,0,.5)'";
 		}else{
-			color = "";
+			color = "style='background-color:rgba(0,0,0,.5)'";
 		}
 		
-		return "<div "+color+">"+msg+"</div>";
+		return "<span "+color+">"+msg+"</span>";
 	}
     
 }

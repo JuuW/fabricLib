@@ -73,36 +73,44 @@ public class Jackson {
 	}
 
 	public static void main(String[] args) {
-		User user = new User();
-		user.setUsername("jaso");
-		user.setPassword("jaso");
-		List users = new ArrayList<User>();
-		users.add(user);
-		users.add(user);
-		users.add(user);
-		users.add(user);
-		users.add(user);
-		users.add(user);
-		// System.out.println(getJson(user));
-		System.out.println(getJson(users));
+//		User user = new User();
+//		user.setUsername("jaso");
+//		user.setPassword("jaso");
+//		List users = new ArrayList<User>();
+//		users.add(user);
+//		users.add(user);
+//		users.add(user);
+//		users.add(user);
+//		users.add(user);
+//		users.add(user);
+//		// System.out.println(getJson(user));
+//		System.out.println(getJson(users));
+//		
+//		
+//		Fabric fabric =  new Fabric();
+//		fabric.setHangerNo("TEST");
+//		fabric.setArticle("Article1");
+//		fabric.setContent("23");
+//		fabric.setCstructnWarp("233");
+//		fabric.setCstructnWeft("233");
+//		fabric.setWeaving("323");
+//		fabric.setWeight("32");
+//		fabric.setWidth("434");
+//		List fabricS = new ArrayList<Fabric>();
+//		fabricS.add(fabric);
+//		fabricS.add(fabric);
+//		fabricS.add(fabric);
+//		fabricS.add(fabric);
+//		System.out.println(getJson(fabricS));
+//		System.out.println(System.getProperty("java.io.tmpdir"));
 		
-		
-		Fabric fabric =  new Fabric();
-		fabric.setHangerNo("TEST");
-		fabric.setArticle("Article1");
-		fabric.setContent("23");
-		fabric.setCstructnWarp("233");
-		fabric.setCstructnWeft("233");
-		fabric.setWeaving("323");
-		fabric.setWeight("32");
-		fabric.setWidth("434");
-		List fabricS = new ArrayList<Fabric>();
-		fabricS.add(fabric);
-		fabricS.add(fabric);
-		fabricS.add(fabric);
-		fabricS.add(fabric);
-		System.out.println(getJson(fabricS));
-		
+		int d = 97;
+		char c = (char) d;
+		System.err.println(c);
+		String dd = "23223,eewew,,,fd";
+		String[] ds = dd.split(",");
+		System.err.println(ds.length);
+		System.err.println(Tool.isEmpty(" "));
 	}
 	
 	
