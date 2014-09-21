@@ -43,39 +43,68 @@ public class SearchFabric extends BaseServlet {
 		if(!Tool.isEmpty(inputDate)){
 			fabric.setInputDate(Tool.dateToString(inputDate));
 		}
-//		fabric.setInputDate( req.getParameter("hangerNo"));
-//		fabric.setCstructnWarp( req.getParameter("cstructnWarp"));
-//		fabric.setCstructnWeft( req.getParameter("cstructnWeft"));
-//		fabric.setYarnWarp( req.getParameter("yarnWarp"));
-//		fabric.setYarnWeft( req.getParameter("yarnWeft"));
-//		fabric.setContent( req.getParameter("content"));
-//		fabric.setStatus( req.getParameter("status"));
-//		fabric.setWeaving( req.getParameter("weaving"));
-//		fabric.setFinishing( req.getParameter("finishing"));
-//		fabric.setWidth( req.getParameter("width"));
-//		fabric.setWeight( req.getParameter("weight"));
-//		fabric.setArticle( req.getParameter("article"));
-//		fabric.setOriginalPrice( req.getParameter("originalPrice"));
-//		fabric.setFinalPrice( req.getParameter("finalPrice"));
+		String cstructnWarp = req.getParameter("cstructnWarp");
+		if(!Tool.isEmpty(cstructnWarp)){
+			fabric.setCstructnWarp(cstructnWarp);
+		}
+		String cstructnWeft = req.getParameter("cstructnWeft");
+		if(!Tool.isEmpty(cstructnWeft)){
+			fabric.setCstructnWeft(cstructnWeft);
+		}
+		String yarnWarp = req.getParameter("yarnWarp");
+		if(!Tool.isEmpty(yarnWarp)){
+			fabric.setYarnWarp(yarnWarp);
+		}
+		String yarnWeft = req.getParameter("yarnWeft");
+		if(!Tool.isEmpty(yarnWeft)){
+			fabric.setYarnWeft(yarnWeft);
+		}
+		String content = req.getParameter("content");
+		if(!Tool.isEmpty(content)){
+			fabric.setContent(content);
+		}
+		String status = req.getParameter("status");
+		if(!Tool.isEmpty(status)){
+			fabric.setStatus(status);
+		}
+		String weaving = req.getParameter("weaving");
+		if(!Tool.isEmpty(weaving)){
+			fabric.setWeaving(weaving);
+		}
+		String finishing = req.getParameter("finishing");
+		if(!Tool.isEmpty(finishing)){
+			fabric.setFinishing(finishing);
+		}
+
+		String width = req.getParameter("width");
+		if(!Tool.isEmpty(width)){
+			fabric.setWidth(width);
+		}
+		
+		String weight = req.getParameter("weight");
+		if(!Tool.isEmpty(weight)){
+			fabric.setWeight(weight);
+		}
+		String article = req.getParameter("article");
+		if(!Tool.isEmpty(article)){
+			fabric.setArticle(article);
+		}
+		String originalPrice = req.getParameter("originalPrice");
+		if(!Tool.isEmpty(originalPrice)){
+			fabric.setOriginalPrice(originalPrice);
+		}
+		String finalPrice = req.getParameter("finalPrice");
+		if(!Tool.isEmpty(finalPrice)){
+			fabric.setFinalPrice(finalPrice);
+		}
 		
 		List<Fabric> items = FabricIO.getByExample(fabric);
 
 		StringBuffer html = new StringBuffer("");
-//		StringBuffer html = new StringBuffer("<div>");
-//
-//		if(!items.isEmpty()){
-//			html.append("<table>");
-//			html.append("<tr><th>Hanger No.</th><th>Article</th></tr>");
-//			for (Fabric item : items) {
-//				html.append("<tr><td>").append(item.getHangerNo()).append("</td></td>").append(item.getArticle()).append("</td></tr>");
-//			}
-//			html.append("</table>");
-//		}
 
 		html.append(Jackson.getJson(items));
-//		html.append("</div>");
 		CustomLog.info(html.toString());
-	
+
 		print(resp, html.toString());
 	}
 

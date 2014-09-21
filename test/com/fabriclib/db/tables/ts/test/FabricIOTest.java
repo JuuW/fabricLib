@@ -20,7 +20,7 @@ public  class FabricIOTest extends DatabaseIO {
 	@Test
 	public void testGetByExample() throws Exception{
 		Fabric fabric =  new Fabric();
-    	fabric.setHangerNo("23");
+//    	fabric.setHangerNo("23");
     	String s = Jackson.getJson(FabricIO.getByExample(fabric));
     	System.out.println(s);
 	}
