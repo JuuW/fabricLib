@@ -12,7 +12,8 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 	<!--  <property name="hibernate.connection.url">jdbc:mysql://rdsnznav3nznav3.mysql.rds.aliyuncs.com/fabriclib</property>-->	
-		<property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/information_schema</property>
+		<property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/fabriclib</property>
+		<!-- <property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/fabriclib</property>-->
 		<property name="hibernate.connection.username">wjroot</property>
 		<property name="hibernate.connection.password">wjroot</property>
 		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fabriclib</property>

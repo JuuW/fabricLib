@@ -104,14 +104,14 @@ public class Hello extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		try {
+//		try {
 			doPostDoer(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			out.print(e.getMessage());
-			out.flush();
-			throw e;
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			out.print(e.getMessage());
+//			out.flush();
+//			throw e;
+//		}
 
 	}
 

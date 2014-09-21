@@ -38,13 +38,13 @@ public abstract class BaseServlet extends HttpServlet{
 		
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		try {
+//		try {
 			doGetDoer(req, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
-			print(resp,e.getMessage());
-			throw e;
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			print(resp,e.getMessage());
+//			throw e;
+//		}
 	}
 	
 
@@ -55,13 +55,13 @@ public abstract class BaseServlet extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		
-		try {
+	
 			doPostDoer(req, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
-			print(resp,e.getMessage());
-			throw e;
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			print(resp,e.getMessage());
+//			throw e;
+//		}
 		
 		
 	}
