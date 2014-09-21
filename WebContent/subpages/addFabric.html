@@ -89,6 +89,26 @@
 </div>
 <script>
     (function() {
+
+        function checkFormField($form) {
+            var error = false;
+            var hangerNo = $form.find("input[name='hangerNo']"),
+                    content = $form.find("input[name='content']");
+            if(!hangerNo.val()) {
+                hangerNo.addClass("error");
+                error = true;
+            }else {
+                hangerNo.removeClass("error");
+            }
+            if(!content.val()) {
+                content.addClass("error");
+                error = true;
+            }else {
+                content.removeClass("error");
+            }
+            return error;
+        }
+
         $( "#addFabricForm" ).submit(function( event ) {
 
             // Stop form from submitting normally
@@ -99,7 +119,8 @@
                     postData = $form.serializeArray(),
                     formURL = $form.attr( "action" );
 
-            if (!isEmpty()) {
+            if (!checkFormField($form)) {
+                $("#fabric_table_msg").html("");
                 $("#footer").html("");
                 $.ajax({
                     type: "post",
