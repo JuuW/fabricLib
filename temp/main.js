@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+    var b = new Barcode39;
+    b.toBarcode();
     console.log("Let's start :" + new Date().getMilliseconds());
 
     $("#nav-user").click(function() {
@@ -12,6 +13,8 @@ $(document).ready(function() {
     var data  = [{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"},{"id":0,"password":"jaso","name":"jaso"}];
     $("#test_json_2_table").html(ConvertJsonToTable(data,"table_id2","display","Download"));
     $('#table_id2').DataTable();
+    
+
 });
 
 
