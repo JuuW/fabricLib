@@ -10,32 +10,51 @@
 		<format property="touch.time" pattern="yyyy-MM-dd hh:mm" />
 	</tstamp>
 
-	<target name="build">
+	<target name="dirs">
 		<delete dir="build" />
 		<mkdir dir="build/jar" />
 		<mkdir dir="build/classes" />
 		<mkdir dir="build/deploy" />
+	</target>
+
+	<target name="compile" depends="dirs">
 		<javac srcdir="src" destdir="build/classes" target="1.6" debug="on" encoding="UTF-8" classpathref="classpath" />
-		<jar destfile="build/jar/${app_name}.jar" basedir="build/classes" >
+		<copydir dest="build/classes" src="src" excludes="**/*.java" />
+		<jar destfile="build/jar/${app_name}.jar" basedir="build/classes">
 			<manifest>
 				<attribute name="Author" value="Jason" />
 				<attribute name="Build-Time" value="${touch.time}" />
 			</manifest>
 		</jar>
-		<copydir dest="build/classes" src="src" excludes="**/*.java" />
+		
+		<copy todir="${tomcat_home}/webapps/fabriclib-web/WEB-INF/lib" file="build/jar/${app_name}.jar" />
+
+	</target>
+
+	<target name="copylib" depends="compile">
+		<delete dir="C:\app\apache-tomcat-7.0.55\webapps\fabriclib-web\WEB-INF\lib" ></delete>
+		<copy todir="C:\app\apache-tomcat-7.0.55\webapps\fabriclib-web\WEB-INF\lib" flatten="true">
+			<fileset dir="lib"  includes="**/*.jar" excludes="servlet*.jar">
+			</fileset>
+			<file file="build/jar/${app_name}.jar">
+			</file>
+		</copy>
+	</target>
+
+	<target name="build" depends="compile">
 
 		<copy todir="build/temp">
 			<fileset dir="WebContent" />
 		</copy>
-		
-		<copy todir="build/temp/WEB-INF/lib"  flatten="true">
+
+		<copy todir="build/temp/WEB-INF/lib" flatten="true">
 			<!--<file file="build/jar/${app_name}.jar"/>-->
-			<fileset dir="lib" includes="**/*.jar" excludes="servlet*.jar"/>
+			<fileset dir="lib" includes="**/*.jar" excludes="servlet*.jar" />
 		</copy>
 		<copy todir="build/temp/WEB-INF/classes">
-			<fileset dir="build/classes"/>
+			<fileset dir="build/classes" />
 		</copy>
-		
+
 		<zip destfile="build/deploy/${app_name}.war" basedir="build/temp" />
 		<copy todir="${tomcat_home}/webapps" file="build/deploy/${app_name}.war" />
 

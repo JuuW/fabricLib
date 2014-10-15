@@ -21,15 +21,18 @@ public class Tool {
 		return dateToString(dateStr, "yyyy-MM-dd");
 	}
 
-	public static boolean isEmpty(String str) {
-		boolean result = true;
-
-		if (str != null) {
-			str.trim();
+	public static boolean isNotEmpty(Object obj) {
+		boolean result = false;
+        
+		String str;
+		
+		if (obj != null) {
+			
+			str = obj.toString().trim();
 			if (!str.equals("")) {
 				if (!str.isEmpty()) {
 					
-					result = false;
+					result = true;
 				}
 			}
 		}

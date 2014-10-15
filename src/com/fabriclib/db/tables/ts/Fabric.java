@@ -15,7 +15,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "FABRIC")
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+//@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+
 public class Fabric implements Serializable {
 
 	public Fabric() {
@@ -54,6 +55,7 @@ public class Fabric implements Serializable {
 	 * 是否打印
 	 */
 	@Column(name = "print_out")
+	@JsonIgnore
 	private String printOut;
 
 	/**
@@ -134,6 +136,9 @@ public class Fabric implements Serializable {
 	@Column(name = "finalPrice" ,length = 12)
 	private String finalPrice;
 
+	@Column(name = "deleted" ,length = 1)
+	@JsonIgnore
+	private String deleted;
 
 	public long getId() {
 		return id;
@@ -248,7 +253,8 @@ public class Fabric implements Serializable {
 	}
 
 	public String getWeight() {
-		return weight;
+		
+		return weight==null?"":weight;
 	}
 
 	public void setWeight(String weight) {
@@ -277,6 +283,14 @@ public class Fabric implements Serializable {
 
 	public void setFinalPrice(String finalPrice) {
 		this.finalPrice = finalPrice;
+	}
+
+	public String getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(String deleted) {
+		this.deleted = deleted;
 	}
 
 	@Override

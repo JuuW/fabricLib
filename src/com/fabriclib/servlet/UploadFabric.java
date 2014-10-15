@@ -36,7 +36,7 @@ import com.fabriclib.util.Tool;
 //@WebServlet(name="mytest", 
 //urlPatterns={"/myurl"}, 
 //initParams={ @InitParam(name="n1", value="v1"), @InitParam(name="n2", value="v2") }) 
-@WebServlet(name = "UploadFabricServlet", description = "upload fabric ", urlPatterns = { "/UploadFabric" }, initParams = {
+@WebServlet(name = "UploadFabricServlet", description = "upload fabric ", urlPatterns = { "/UploadFabric.do" }, initParams = {
 		@WebInitParam(name = "mock", value = "mock"),
 		@WebInitParam(name = "mock", value = "mock") })
 public class UploadFabric extends BaseServlet {
@@ -89,7 +89,7 @@ public class UploadFabric extends BaseServlet {
 		for (int i = 1; i < linesStr.length; i++) {
 			String lineStr = linesStr[i];
 			CustomLog.info(lineStr);
-			if(!Tool.isEmpty(lineStr)){
+			if(Tool.isNotEmpty(lineStr)){
 				CustomLog.info(lineStr);
 				lineStr = lineStr + ",==mock==";
 				String[] column = lineStr.split(",");

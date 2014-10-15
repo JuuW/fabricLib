@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 import com.fabriclib.db.util.DatabaseIO;
 import com.fabriclib.util.Message;
@@ -19,12 +21,16 @@ public class FabricIO extends DatabaseIO {
 		if (notExist(hangerNo)) {
 			List<Fabric> items = new ArrayList<Fabric>();
 			items.add(item);
-			return saveOrUpdateList(items);
+			
+			Message message = saveOrUpdateList(items);
+			message.setObj(item.getId());
+			return message;
 		} else {
 			return new Message("E", "The hangerNo " + hangerNo + " is existed.");
 		}
 
 	}
+
 
 	public static boolean notExist(String hangerNo) {
 
@@ -42,15 +48,20 @@ public class FabricIO extends DatabaseIO {
 			sess = getDBSession();
 			Criteria criteria = sess.createCriteria(Fabric.class);
 			criteria.add(Example.create(fabric));
+			criteria.add(Restrictions.isNull("deleted"));
 			items = criteria.list();
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 		}finally{
-			sess.clear();
-			sess.close();
+			if(sess!=null){
+				sess.clear();
+				sess.close();
+			}
 		}
 		return items;
 	}
+	
+	
 	
 	public static List<Fabric> getByCriteria(HashMap<String, String> criteria) {
 		List<Fabric> items = new ArrayList<Fabric>();
@@ -76,9 +87,40 @@ public class FabricIO extends DatabaseIO {
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
 		}finally{
-			sess.clear();
-			sess.close();
+			if(sess!=null){
+				sess.clear();
+				sess.close();
+			}
 		}
 		return items;
+	}
+	
+	public static boolean updateDelete(long id) throws Exception {
+		boolean result  = false;
+		Session sess = null;
+		try {
+
+			sess = getDBSession();
+			sess.beginTransaction();
+			
+			Query query = sess.createQuery("update Fabric f set f.deleted = 'T' where id = " + id);  
+			query.executeUpdate();  
+			// 分批提交
+			sess.flush();
+			sess.clear();
+			sess.getTransaction().commit();
+			result  =  true;
+		} catch (Exception e) {
+			if (sess != null) {
+				sess.getTransaction().rollback();
+			}
+			throw e;
+		} finally {
+			if (sess != null) {
+				sess.close();
+			}
+
+		}
+		return  result;
 	}
 }

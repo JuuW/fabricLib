@@ -1,9 +1,13 @@
 package com.fabriclib.util;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Message {
 	
 	private String msgType ;
 	private String msg ;
+	@JsonIgnore
+	private Object obj ;
 	
 	public Message(){
 		
@@ -13,6 +17,13 @@ public class Message {
 		this.msgType  = msgType;
 		this.msg  = msg;
 	}
+	
+	public Message(String msgType,String msg,Object obj){
+		this.msgType  = msgType;
+		this.msg  = msg;
+		this.obj  = obj;
+	}
+	
 	
 	public String getMsgType() {
 		return msgType;
@@ -26,6 +37,16 @@ public class Message {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+	
+	
+	public Object getObj() {
+		return obj;
+	}
+
+	public void setObj(Object obj) {
+		this.obj = obj;
+	}
+	@JsonIgnore
 	public String getMsgHtml() {
 		String color = "";
 		if(getMsgType().equals("S")){
@@ -38,5 +59,11 @@ public class Message {
 		
 		return "<span "+color+">"+msg+"</span>";
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Message [msgType=" + msgType + ", msg=" + msg + ", obj=" + obj
+				+ "]";
+	}
+	
 }

@@ -16,7 +16,7 @@ import com.fabriclib.db.tables.user.UserIO;
 import com.fabriclib.util.CustomLog;
 import com.fabriclib.util.Message;
 
-@WebServlet(name = "AddUserServlet", asyncSupported = true, description = "add fabric", urlPatterns = { "/AddUser" }, initParams = {
+@WebServlet(name = "AddUserServlet", asyncSupported = true, description = "add fabric", urlPatterns = { "/AddUser.do" }, initParams = {
 		@WebInitParam(name = "mock", value = "mock"),
 		@WebInitParam(name = "mock", value = "mock") })
 public class AddUser extends BaseServlet {

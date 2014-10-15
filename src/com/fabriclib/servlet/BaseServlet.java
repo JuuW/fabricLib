@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.fabriclib.db.util.Properties;
 import com.fabriclib.util.CustomLog;
 
 public abstract class BaseServlet extends HttpServlet{
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 		CustomLog.info("Initial:");
 	}
 
@@ -36,34 +38,19 @@ public abstract class BaseServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		resp.setCharacterEncoding("UTF-8");
-		req.setCharacterEncoding("UTF-8");
-//		try {
+		resp.setCharacterEncoding(Properties.ENCODING);
+		req.setCharacterEncoding(Properties.ENCODING);
 			doGetDoer(req, resp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			print(resp,e.getMessage());
-//			throw e;
-//		}
 	}
-	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		resp.setCharacterEncoding("UTF-8");
-		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding(Properties.ENCODING);
+		req.setCharacterEncoding(Properties.ENCODING);
 		
-	
 			doPostDoer(req, resp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			print(resp,e.getMessage());
-//			throw e;
-//		}
-		
-		
 	}
 	
 	

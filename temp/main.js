@@ -14,6 +14,11 @@ $(document).ready(function() {
     $("#test_json_2_table").html(ConvertJsonToTable(data,"table_id2","display","Download"));
     $('#table_id2').DataTable();
     
+    
+    $("#table_idd tbody tr").click(function(){
+    	var nTds = $("td", this);
+		alert($(nTds[1]).text());
+    	})
 
 });
 

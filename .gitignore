@@ -31,3 +31,4 @@ doc/*.txt
 /WebContent/bower_components
 
 /.idea
+/lib/

@@ -37,7 +37,7 @@ public class User implements Serializable {
 	private long version;
 
 	@Column(name = "username", unique = true, nullable = false, length = 20)
-	@JsonProperty("name")
+	@JsonProperty("username")
 	private String username;
 
 	@Column(name = "password", length = 20)

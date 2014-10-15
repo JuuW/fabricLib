@@ -11,22 +11,31 @@
 
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-	<!--  <property name="hibernate.connection.url">jdbc:mysql://rdsnznav3nznav3.mysql.rds.aliyuncs.com/fabriclib</property>
-		<property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/fabriclib</property>
-		<property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/fabriclib</property>
+ <property name="hibernate.connection.url">jdbc:mysql://easythem.mysql.rds.aliyuncs.com:3306/fabriclib</property>
 		<property name="hibernate.connection.username">wjroot</property>
-		<property name="hibernate.connection.password">wjroot</property> -->
-		 <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fabriclib</property>
+		<property name="hibernate.connection.password">wjroot</property> 
+<!-- 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/fabriclib</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.password">root</property>-->
 		<property name="hibernate.jdbc.batch_size">0</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-		<!-- configuration pool via c3p0 <property name="hibernate.c3p0.acquire_increment">1</property> 
-			<property name="hibernate.c3p0.idle_test_period">100</property> <property 
-			name="hibernate.c3p0.max_size">100</property> <property name="hibernate.c3p0.max_statements">0</property> 
-			<property name="hibernate.c3p0.min_size">10</property> <property name="hibernate.c3p0.timeout">100</property> 
-			DEPRECATED very expensive property name="c3p0.validate> -->
+<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<!-- configuration pool via c3p0 		-->
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+		<property name="hibernate.c3p0.acquire_increment">1</property> 
+		<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+		<property name="hibernate.c3p0.idle_test_period">100</property> 
+		<!-- 最大连接数 -->
+		<property name="hibernate.c3p0.max_size">100</property>
+	<!-- 最小连接数 -->
+	<property name="hibernate.c3p0.min_size">10</property> 
+		<!-- 最大的PreparedStatement的数量 -->
+		<property name="hibernate.c3p0.max_statements">0</property> 
+			<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+			<property name="hibernate.c3p0.timeout">100</property> 
+			<!-- 每次都验证连接是否可用 -->
+		<!-- 	DEPRECATED very expensive property name="c3p0.validate> -->
 
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 		<!-- Transaction demarcation with plain JDBC To enable the thread-bound 
@@ -37,13 +46,13 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<property name="hibernate.show_sql">true</property>
-		<!-- <property name="hibernate.format_sql">true</property> <property name="hibernate.use_sql_comments">true</property> -->
+		<property name="hibernate.format_sql">true</property> 
+		<property name="hibernate.use_sql_comments">true</property>
 
 		<!-- ############################################ -->
 		<!-- # mapping files with external dependencies # -->
 		<!-- ############################################ -->
 
-		<!-- nbi mapping files -->
 
 
 		<mapping class="com.fabriclib.db.tables.user.User" />
