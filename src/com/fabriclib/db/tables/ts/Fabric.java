@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fabriclib.util.DateSerializer;
+import com.fabriclib.util.NullSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -188,6 +190,7 @@ public class Fabric implements Serializable {
 		this.hangerNo = hangerNo;
 	}
 
+	@JsonSerialize(using = DateSerializer.class)    
 	public Date getInputDate() {
 		return inputDate;
 	}
@@ -251,10 +254,10 @@ public class Fabric implements Serializable {
 	public void setWidth(String width) {
 		this.width = width;
 	}
-
+	@JsonSerialize(using = NullSerializer.class)  
 	public String getWeight() {
 		
-		return weight==null?"":weight;
+		return weight;
 	}
 
 	public void setWeight(String weight) {

@@ -29,7 +29,6 @@ public class AddUser extends BaseServlet {
 		
 
 		
-		req.getSession().getAttribute("username");
 
 		StringBuffer html = new StringBuffer("<div>");
 

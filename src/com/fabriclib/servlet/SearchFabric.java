@@ -98,7 +98,7 @@ public class SearchFabric extends BaseServlet {
 		
 		List<Fabric> items = FabricIO.getByExample(fabric);
 		String returnData = Jackson.getJson(items);
-		CustomLog.info(returnData);
+//		CustomLog.info(returnData);
 		print(resp, returnData);
 	}
 

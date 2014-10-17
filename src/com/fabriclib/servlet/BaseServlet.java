@@ -37,7 +37,7 @@ public abstract class BaseServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+//		req.getContentType();
 		resp.setCharacterEncoding(Properties.ENCODING);
 		req.setCharacterEncoding(Properties.ENCODING);
 			doGetDoer(req, resp);

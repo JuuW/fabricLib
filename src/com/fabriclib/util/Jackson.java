@@ -1,7 +1,9 @@
 package com.fabriclib.util;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fabriclib.db.tables.ts.Fabric;
@@ -37,7 +39,10 @@ public class Jackson {
 //		 mapper.registerModule(testModule);
 		
 		mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-
+//		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false); 
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+//        String formattedDate = formatter.format(value);   
+//		mapper.getSerializationConfig().with(formatter); 
 		// to enable standard indentation ("pretty-printing"):
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		// to allow serialization of "empty" POJOs (no properties to serialize)
@@ -106,6 +111,7 @@ public class Jackson {
 		//
 		//
 		 Fabric fabric = new Fabric();
+		 fabric.setInputDate(new Date());
 		// fabric.setHangerNo("TEST");
 		// fabric.setArticle("Article1");
 		// fabric.setContent("23");
@@ -124,6 +130,7 @@ public class Jackson {
 //		List i = new ArrayList();
 //		i.add(new User());
 		System.out.println(getJson(fabricS));
+		System.out.print(new Date().getTime());
 
 	}
 

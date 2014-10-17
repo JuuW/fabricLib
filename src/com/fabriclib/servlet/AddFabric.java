@@ -41,8 +41,7 @@ public class AddFabric extends BaseServlet {
 	@Override
 	protected void doPostDoer(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		log.info("你好");
-		System.out.println("你好");
+		
 		String path = req.getSession().getServletContext().getRealPath("/");
 		FileItem fileitem = null;
 		CustomLog.info("path="+path);
@@ -67,10 +66,12 @@ public class AddFabric extends BaseServlet {
 //					CustomLog.info(item.getFieldName()+"="+item.getString());
 					// 如果这个文本域是文件类型的
 					if (item.isFormField()) {
+						log.info(item.getContentType());
 						CustomLog.info(item.getFieldName()+"="+item.getString());
 //						String value=new String(item.getString().getBytes("ISO-885Array-1"),"UTF-8");
 						String value= item.getString();
 //						paras.put(item.getFieldName(), item.getString());
+						value = new String(value.getBytes("ISO-8859-1"),"UTF-8");
 						paras.put(item.getFieldName(), value);
 						
 					} else {
@@ -93,12 +94,17 @@ public class AddFabric extends BaseServlet {
 		fabric.setContent(paras.get("content"));
 		fabric.setStatus(paras.get("status"));
 		fabric.setWeaving(paras.get("weaving"));
+		
+//		String finishing = new String(paras.get("finishing").getBytes("ISO-8859-1"),"UTF-8");
 		fabric.setFinishing(paras.get("finishing"));
+//		fabric.setFinishing(paras.get("finishing"));
 		fabric.setWidth(paras.get("width"));
 		fabric.setWeight(paras.get("weight"));
 		fabric.setArticle(paras.get("article"));
 		fabric.setOriginalPrice(paras.get("originalPrice"));
 		fabric.setFinalPrice(paras.get("finalPrice"));
+//		fabric.setDeleted("");
+		fabric.setPrintOut("");
 
 		CustomLog.info("input paramater:"+Jackson.getJson(fabric));
 		try {
