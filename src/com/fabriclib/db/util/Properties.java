@@ -32,4 +32,37 @@ public final class Properties {
 	}
     public final static String LOG_PREFIX = properties.getProperty("log-prefix");
     public final static String ENCODING = properties.getProperty("encoding-servlet");
+    public static String LANGUAGE = "en";
+    public static String msg1(String s1){
+    	if(LANGUAGE.equals("en")){
+    		return "parse request items error:"+s1;
+    	}else{
+    		return "解析请求错误:"+s1;
+    	}
+    }
+	public static String msg2(String hangerNo, String message) {
+		if(LANGUAGE.equals("en")){
+    		return "hangerNo:" + hangerNo
+    				+ ". saving is failed!" + message;
+    	}else{
+    		return "hangerNo:" + hangerNo
+    				+ ". 保存失败!" + message;
+    	}
+	}
+	public static String msg3(String hangerNo) {
+		if(LANGUAGE.equals("en")){
+    		return "The hangerNo " + hangerNo + " is existed.";
+    	}else{
+    		return "记录 hangerNo " + hangerNo + " 已经存在.";
+    	}
+	}
+	public static String msg4() {
+		
+		// TODO Auto-generated method stub
+		if(LANGUAGE.equals("en")){
+    		return "Save to database successfuly！";
+    	}else{
+    		return "数据保存成功！";
+    	}
+	}
 }

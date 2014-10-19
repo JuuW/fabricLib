@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fabriclib.db.tables.user.User;
 import com.fabriclib.db.tables.user.UserIO;
+import com.fabriclib.db.util.Properties;
 import com.fabriclib.util.CustomLog;
 import com.fabriclib.util.Jackson;
 import com.fabriclib.util.Tool;
@@ -24,12 +25,15 @@ public class Login extends BaseServlet{
 			throws ServletException, IOException {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
+		String language = req.getParameter("language");
 		CustomLog.info("Loginfo: username ="+username);
 		User user = null;
 		if(Tool.isNotEmpty(username)&&Tool.isNotEmpty(password)){
 			user = UserIO.login(username,password);
 			if (user!=null) {
 				req.getSession().setAttribute("username", username);
+				req.getSession().setAttribute("language", language);
+				Properties.LANGUAGE = language;
 			}else{
 				
 			}

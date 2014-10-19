@@ -1,35 +1,15 @@
 package com.fabriclib.servlet;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
-import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
-import com.fabriclib.db.tables.user.User;
-import com.fabriclib.db.tables.user.UserIO;
-import com.fabriclib.util.CustomLog;
-import com.fabriclib.util.Jackson;
-import com.fabriclib.util.Message;
 
 //@WebServlet(name="mytest", 
 //urlPatterns={"/myurl"}, 
@@ -43,17 +23,27 @@ public class ModifyFabric extends BaseServlet {
 	@Override
 	protected void doPostDoer(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		List<Message> msglist = new ArrayList<Message>();
 		
-		Fabric fabric =  new Fabric();
-		fabric.setContent(req.getParameter("content"));
+		String id =req.getParameter("fid");
+		String column =req.getParameter("column");
+		String value =req.getParameter("value");
+//		value = new String(value.getBytes("ISO-8859-1"),"UTF-8");
+		log.info("id="+id);
+		log.info("value="+value);
+		log.info("column="+column);
+		
+        String result = "false";
+		
 		try {
-			boolean msg = FabricIO.update(fabric);
+			if(FabricIO.updateColumn(Long.valueOf(id),column,value)){
+				result= value;
+			}
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		msglist.add(new Message("E","parse request items error:"));
-		print(resp, Jackson.getJson(msglist));
+		
+		print(resp,result);
 	}
 
 	

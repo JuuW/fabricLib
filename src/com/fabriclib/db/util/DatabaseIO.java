@@ -168,7 +168,7 @@ public class DatabaseIO {
 				i++;
 			}
 			sess.getTransaction().commit();
-			return new Message("S", "save to database successfuly");
+			return new Message("S", com.fabriclib.db.util.Properties.msg4());
 		} catch (Exception e) {
 			if (sess != null) {
 				sess.getTransaction().rollback();

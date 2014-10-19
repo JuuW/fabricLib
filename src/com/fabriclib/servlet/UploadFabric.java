@@ -1,18 +1,13 @@
 package com.fabriclib.servlet;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -20,16 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
-import com.fabriclib.db.util.Properties;
 import com.fabriclib.util.CustomLog;
-import com.fabriclib.util.Jackson;
 import com.fabriclib.util.Message;
 import com.fabriclib.util.Tool;
 
@@ -54,17 +46,20 @@ public class UploadFabric extends BaseServlet {
 		StringBuffer html = new StringBuffer("<div>");
 
 		String fileStr = getFile(req, resp);
-		List<Fabric> items = getList(fileStr);
-		try {
-			Message msg =  FabricIO.saveOrUpdateList(items);
+		List<Fabric> items = new ArrayList<Fabric>();
+		boolean result = getList(fileStr,items);
+		if(result){
+			try {
+				Message msg =  FabricIO.saveOrUpdateList(items);
+				html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
+			} catch (Exception e) {
+				Message msg =  new Message("E","Upload is failed!"+e.getMessage());
+				html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
+				e.printStackTrace();
+			}
+		}else{
+			Message msg =  new Message("E","Upload is failed! format of row " + items.size() +"is wrong!");
 			html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
-			
-		} catch (Exception e) {
-			Message msg =  new Message("E","Upload is failed!"+e.getMessage());
-			
-			html.append(msg.getMsgType() + ":  "+ msg.getMsgHtml());
-
-			e.printStackTrace();
 		}
 		html.append("</div>");
 		
@@ -81,11 +76,11 @@ public class UploadFabric extends BaseServlet {
 	}
 
 	
-	private List<Fabric> getList(String fileStr) {
-		List<Fabric> items = new ArrayList<Fabric>();
+	private boolean getList(String fileStr,List<Fabric> items ) {
 		CustomLog.info(fileStr);
+		boolean result = true;
 		String[] linesStr = fileStr.split("\r\n");
-		
+		outer:
 		for (int i = 1; i < linesStr.length; i++) {
 			String lineStr = linesStr[i];
 			CustomLog.info(lineStr);
@@ -94,8 +89,9 @@ public class UploadFabric extends BaseServlet {
 				lineStr = lineStr + ",==mock==";
 				String[] column = lineStr.split(",");
 				
-				for (int j = 0; j < column.length; j++) {
-					System.err.println(column[j]);
+				if(column.length!=13){
+					result = false;
+					break outer;
 				}
 				Fabric fabric = new Fabric();
 				fabric.setHangerNo(column[0]);
@@ -118,7 +114,7 @@ public class UploadFabric extends BaseServlet {
 			
 		}
 
-		return items;
+		return result;
 
 	}
 
@@ -153,7 +149,6 @@ public class UploadFabric extends BaseServlet {
 				            while ((tempbyte = bis.read()) != -1) {
 				            	char c = (char) tempbyte;
 				                System.out.write(tempbyte);
-				                System.out.print("=="+tempbyte);
 				                fileStr.append(c);
 				            }
 							

@@ -23,7 +23,6 @@ public abstract class BaseServlet extends HttpServlet{
 
 	
 	protected void print(HttpServletResponse resp,String info) throws IOException{
-		CustomLog.info(info);
 		PrintWriter out = resp.getWriter();
 		out.print(info.toString());
 		out.flush();

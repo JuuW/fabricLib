@@ -40,7 +40,7 @@ public class AddUser extends BaseServlet {
 			Message msg = UserIO.save(user);
 			html.append(msg.getMsgType() + ":  "+ msg.getMsg());
 		} catch (Exception e) {
-			html.append("hangerNo:").append(user.getUsername())
+			html.append("User:").append(user.getUsername())
 			.append(". saving is failed!");
 			e.printStackTrace();
 		}

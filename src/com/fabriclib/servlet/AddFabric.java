@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import com.fabriclib.db.tables.ts.Fabric;
 import com.fabriclib.db.tables.ts.FabricIO;
+import com.fabriclib.db.util.Properties;
 import com.fabriclib.util.CustomLog;
 import com.fabriclib.util.Jackson;
 import com.fabriclib.util.Message;
@@ -79,7 +80,7 @@ public class AddFabric extends BaseServlet {
 					}
 				}
 			} catch (Exception e) {
-				msglist.add(new Message("E","parse request items error:"+e.getMessage()));
+				msglist.add(new Message("E",Properties.msg1(e.getMessage())));
 				e.printStackTrace();
 			}
 		}
@@ -112,8 +113,7 @@ public class AddFabric extends BaseServlet {
 			msglist.add(message);
 			saveFile(req,fileitem,message.getObj());
 		} catch (Exception e) {
-			msglist.add(new Message("E", "hangerNo:" + fabric.getHangerNo()
-					+ ". saving is failed!" + e.getMessage()));
+			msglist.add(new Message("E", Properties.msg2(fabric.getHangerNo(),e.getMessage())));
 			e.printStackTrace();
 		}
 		

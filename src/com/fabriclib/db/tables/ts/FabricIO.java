@@ -12,12 +12,14 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
 import com.fabriclib.db.util.DatabaseIO;
+import com.fabriclib.db.util.Properties;
 import com.fabriclib.util.Message;
 
 public class FabricIO extends DatabaseIO {
 
 	public static Message save(Fabric item) throws Exception {
 		String hangerNo = item.getHangerNo();
+		String msgStr;
 		if (notExist(hangerNo)) {
 			List<Fabric> items = new ArrayList<Fabric>();
 			items.add(item);
@@ -26,11 +28,12 @@ public class FabricIO extends DatabaseIO {
 			message.setObj(item.getId());
 			return message;
 		} else {
-			return new Message("E", "The hangerNo " + hangerNo + " is existed.");
+			
+			return new Message("E", Properties.msg3(hangerNo) );
 		}
 
 	}
-
+    
 
 	public static boolean notExist(String hangerNo) {
 
@@ -104,6 +107,34 @@ public class FabricIO extends DatabaseIO {
 			sess.beginTransaction();
 			
 			Query query = sess.createQuery("update Fabric f set f.deleted = 'T' where id = " + id);  
+			query.executeUpdate();  
+			// 分批提交
+			sess.flush();
+			sess.clear();
+			sess.getTransaction().commit();
+			result  =  true;
+		} catch (Exception e) {
+			if (sess != null) {
+				sess.getTransaction().rollback();
+			}
+			throw e;
+		} finally {
+			if (sess != null) {
+				sess.close();
+			}
+
+		}
+		return  result;
+	}
+	public static boolean updateColumn(long id,String column,String value) throws Exception {
+		boolean result  = false;
+		Session sess = null;
+		try {
+
+			sess = getDBSession();
+			sess.beginTransaction();
+			
+			Query query = sess.createQuery("update Fabric f set f."+column+" = '"+value+"' where id = " + id);  
 			query.executeUpdate();  
 			// 分批提交
 			sess.flush();
